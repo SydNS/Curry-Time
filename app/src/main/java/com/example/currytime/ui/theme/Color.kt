@@ -13,3 +13,6 @@ val dvgreentxt = Color(0xFF09B44D)
 val dvgreenbtnbg = Color(0xFF09B44D)
 //    txt inputlayout bg
 val dvgreentxtbg = Color(0xFFD0F1DD)
+
+//  bg color below
+val bgcolor = Color(0xFF262626)
