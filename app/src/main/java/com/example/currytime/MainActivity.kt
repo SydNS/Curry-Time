@@ -31,6 +31,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.currytime.ui.theme.CurryTimeTheme
+import com.example.currytime.ui.theme.bgcolor
 import com.example.currytime.ui.theme.dvgreentxt
 
 class MainActivity : ComponentActivity() {
@@ -56,8 +57,8 @@ fun Splash() {
             .background(
                 brush = Brush.verticalGradient(
                     colors = listOf(
-                        MaterialTheme.colors.primary,
-                        MaterialTheme.colors.primaryVariant
+                        bgcolor,
+                        Color.Transparent
                     )
                 )
             )
