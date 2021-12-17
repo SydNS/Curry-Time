@@ -63,35 +63,40 @@ fun Splash() {
                 )
             )
     ) {
-        Column(
-            modifier = Modifier
-                .wrapContentSize()
-                .background(color = Color.Transparent)
-                .align(alignment = TopCenter)
-                .padding(60.dp, 50.dp)
-
+        Column(modifier = Modifier.fillMaxSize()
         ) {
-            Image(
-                painterResource(id = R.drawable.logo), contentDescription = "logo",
+
+            Column(
                 modifier = Modifier
+                    .wrapContentSize()
+                    .background(color = Color.Transparent)
                     .align(alignment = CenterHorizontally)
-                    .padding(0.dp, 80.dp, 0.dp, 0.dp)
-                    .clip(RoundedCornerShape(10.dp))
-                    .height(190.dp)
-                    .width(190.dp)
-            )
-            Text(
+                    .padding(60.dp, 50.dp)
 
-                color = dvgreentxt,
-                text = "WELCOME",
-                fontWeight = FontWeight.ExtraBold,
-                fontSize = 50.sp,
-                textAlign = TextAlign.Center,
-                fontFamily = titleFont,
-                modifier = Modifier.padding(0.dp, 30.dp, 0.dp, 0.dp)
+            ) {
+                Image(
+                    painterResource(id = R.drawable.logo), contentDescription = "logo",
+                    modifier = Modifier
+                        .align(alignment = CenterHorizontally)
+                        .padding(0.dp, 80.dp, 0.dp, 0.dp)
+                        .clip(RoundedCornerShape(10.dp))
+                        .height(190.dp)
+                        .width(190.dp)
+                )
+                Text(
+
+                    color = dvgreentxt,
+                    text = "WELCOME",
+                    fontWeight = FontWeight.ExtraBold,
+                    fontSize = 50.sp,
+                    textAlign = TextAlign.Center,
+                    fontFamily = titleFont,
+                    modifier = Modifier.padding(0.dp, 30.dp, 0.dp, 0.dp)
 
 
-            )
+                )
+            }
+
         }
     }
 
