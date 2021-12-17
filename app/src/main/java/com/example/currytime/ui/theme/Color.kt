@@ -7,5 +7,9 @@ val Purple500 = Color(0xFF6200EE)
 val Purple700 = Color(0xFF3700B3)
 val Teal200 = Color(0xFF03DAC5)
 
-//custom divyas color
-val Teal200 = Color(0xFF03DAC5)
+//custom divyas color welcome
+val dvgreentxt = Color(0xFF09B44D)
+//    btn bg
+val dvgreenbtnbg = Color(0xFF09B44D)
+//    txt inputlayout bg
+val dvgreentxtbg = Color(0xFFD0F1DD)
