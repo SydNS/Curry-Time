@@ -13,12 +13,15 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
+import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Alignment.Companion.TopCenter
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.fontResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -71,14 +74,14 @@ fun Splash() {
                     .wrapContentSize()
                     .background(color = Color.Transparent)
                     .align(alignment = CenterHorizontally)
-                    .padding(60.dp, 50.dp)
+                    .padding(start=30.dp, top =10.dp, end = 30.dp, bottom = 30.dp)
 
             ) {
                 Image(
                     painterResource(id = R.drawable.logo), contentDescription = "logo",
                     modifier = Modifier
                         .align(alignment = CenterHorizontally)
-                        .padding(0.dp, 80.dp, 0.dp, 0.dp)
+                        .padding(0.dp, 50.dp, 0.dp, 0.dp)
                         .clip(RoundedCornerShape(10.dp))
                         .height(190.dp)
                         .width(190.dp)
@@ -96,10 +99,24 @@ fun Splash() {
 
                 )
             }
+            
+//            Box(modifier = Modifier.fillMaxSize()
+//
+//
+//                ){
+                Image(painter = painterResource(id = R.drawable.imagesplash),
+                    contentDescription ="plate of food",
+                    modifier = Modifier.fillMaxSize()
+                        .padding( top = 5.dp)
+                        .align(alignment = CenterHorizontally),
+                    contentScale = ContentScale.FillBounds
+                )
 
+//            }
         }
     }
 
 }
 
+val imgcolor = Color(0xFF2B3141)
 val titleFont = FontFamily(Font(R.font.oleoscriptbold))
