@@ -15,4 +15,8 @@ val dvgreenbtnbg = Color(0xFF09B44D)
 val dvgreentxtbg = Color(0xFFD0F1DD)
 
 //  bg color below
-val bgcolor = Color(0xFF262626)
+val bgcolorlogo = Color(0xFF262626)
+
+//  bg color below
+val bgcolor = Color(0xFF171A21)
+
