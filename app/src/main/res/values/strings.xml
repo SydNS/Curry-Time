@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Curry Time</string>
+    <string name="email">Email Address</string>
 </resources>

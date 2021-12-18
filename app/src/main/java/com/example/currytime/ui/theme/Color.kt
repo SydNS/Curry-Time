@@ -19,4 +19,5 @@ val bgcolorlogo = Color(0xFF262626)
 
 //  bg color below
 val bgcolor = Color(0xFF171A21)
+val bgcolor2 = Color(0xB0171A21)
 

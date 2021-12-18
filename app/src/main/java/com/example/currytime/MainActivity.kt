@@ -35,6 +35,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.currytime.ui.theme.CurryTimeTheme
 import com.example.currytime.ui.theme.bgcolor
+import com.example.currytime.ui.theme.bgcolor2
 import com.example.currytime.ui.theme.dvgreentxt
 
 class MainActivity : ComponentActivity() {
@@ -61,7 +62,7 @@ fun Splash() {
                 brush = Brush.verticalGradient(
                     colors = listOf(
                         bgcolor,
-                        Color.Transparent
+                        bgcolor2
                     )
                 )
             )
@@ -107,6 +108,7 @@ fun Splash() {
                 Image(painter = painterResource(id = R.drawable.imagesplash),
                     contentDescription ="plate of food",
                     modifier = Modifier.fillMaxSize()
+
                         .padding( top = 5.dp)
                         .align(alignment = CenterHorizontally),
                     contentScale = ContentScale.FillBounds
