@@ -1,29 +1,19 @@
 package com.example.currytime.screens
 
-import android.graphics.drawable.PaintDrawable
-import android.text.method.TextKeyListener
-import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
-import androidx.compose.ui.Alignment.Companion.CenterVertically
-import androidx.compose.ui.Alignment.Companion.Top
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
@@ -39,19 +29,18 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.currytime.R
-import com.example.currytime.ui.theme.bgcolor
-import com.example.currytime.ui.theme.bgcolor2
 import com.example.currytime.ui.theme.dvgreenbtnbg
 import com.example.currytime.ui.theme.dvgreentxt
-import com.google.android.material.textfield.TextInputEditText
+import com.example.currytime.ui.theme.empasscolor
 
 
-val imgcolor = Color(0xFF2B3141)
+//val imgcolor = Color(0xFF2B3141)
 
 //ui custom fonts
-val loginFont = FontFamily(Font(R.font.poppins))
+val loginFont = FontFamily(Font(R.font.poppinsregular))
 val boldloginFont = FontFamily(Font(R.font.poppinsbold))
 val semiloginFont = FontFamily(Font(R.font.poppinssemibold))
+val loginFontExtra = FontFamily(Font(R.font.poppinsextraligh))
 
 var maxCharEmail: Int = 20
 
@@ -66,7 +55,10 @@ fun Loginscreen() {
             )
     ) {
         Column(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.fillMaxWidth()
+                .wrapContentHeight()
+                .align(Alignment.Center)
+                .background(Color.Transparent)
         ) {
 
             Column(
@@ -74,28 +66,26 @@ fun Loginscreen() {
                     .wrapContentSize()
                     .background(color = Color.Transparent)
                     .align(alignment = Alignment.CenterHorizontally)
-                    .padding(start = 30.dp, top = 10.dp, end = 30.dp, bottom = 30.dp)
 
             ) {
                 Image(
                     painterResource(id = R.drawable.logo), contentDescription = "logo",
                     modifier = Modifier
                         .align(alignment = Alignment.CenterHorizontally)
-                        .padding(0.dp, 20.dp, 0.dp, 0.dp)
+                        .padding(0.dp, 0.dp, 0.dp, 0.dp)
                         .clip(RoundedCornerShape(10.dp))
                         .height(150.dp)
                         .width(150.dp)
                 )
                 Text(
-
                     color = dvgreentxt,
                     text = "Login",
-                    fontWeight = FontWeight.ExtraBold,
+                    fontWeight = FontWeight.Light,
                     fontSize = 30.sp,
                     textAlign = TextAlign.Center,
-                    fontFamily = loginFont,
+                    fontFamily = boldRegisterFont,
                     modifier = Modifier
-                        .padding(0.dp, 10.dp, 0.dp, 0.dp)
+                        .padding(0.dp, 0.dp, 0.dp, 0.dp)
                         .align(Alignment.CenterHorizontally)
 
 
@@ -106,12 +96,15 @@ fun Loginscreen() {
 //            var text by remember { mutableStateOf("text") }
             Column(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .align(alignment = CenterHorizontally)
+                    .wrapContentHeight()
+                    .wrapContentWidth()
+                    .padding(horizontal = 40.dp)
+                    .background(Color.Transparent)
+                    .align(alignment = Alignment.CenterHorizontally)
             ) {
                 MyTextField()
                 Spacer(modifier = Modifier.padding(0.dp, 5.dp))
-                MyTextField()
+                MyPasswordTextField()
                 Spacer(modifier = Modifier.padding(0.dp, 5.dp))
                 forgotpass()
                 Spacer(modifier = Modifier.padding(0.dp, 5.dp))
@@ -130,14 +123,16 @@ fun Loginscreen() {
 }
 
 
-@Preview
+//@Preview
+
+
 @Composable
 fun MyTextField() {
     val textValue = remember { mutableStateOf("") }
-    val primaryColor = colorResource(id = R.color.colorPrimary)
+
     OutlinedTextField(
 
-        modifier = Modifier.padding(horizontal = 40.dp),
+        modifier = Modifier.padding(horizontal = 0.dp),
         maxLines = 1,
         singleLine = true,
         label = {
@@ -150,9 +145,9 @@ fun MyTextField() {
             )
         },
         colors = TextFieldDefaults.outlinedTextFieldColors(
-            focusedBorderColor = primaryColor,
-            focusedLabelColor = primaryColor,
-            cursorColor = primaryColor
+            focusedBorderColor = empasscolor,
+            focusedLabelColor = empasscolor,
+            cursorColor = empasscolor
         ),
         keyboardOptions = KeyboardOptions.Default.copy(
             keyboardType
@@ -168,13 +163,51 @@ fun MyTextField() {
         )
 }
 
-@Preview
+//@Preview
+@Composable
+fun MyPasswordTextField() {
+    val textValue = remember { mutableStateOf("") }
+
+    OutlinedTextField(
+
+        modifier = Modifier.padding(horizontal = 0.dp),
+        maxLines = 1,
+        singleLine = true,
+        label = {
+            Text(
+                text = stringResource(
+                    id =
+                    R.string.password
+                ),
+                fontWeight = FontWeight.SemiBold
+            )
+        },
+        colors = TextFieldDefaults.outlinedTextFieldColors(
+            focusedBorderColor = empasscolor,
+            focusedLabelColor = empasscolor,
+            cursorColor = empasscolor
+        ),
+        keyboardOptions = KeyboardOptions.Default.copy(
+            keyboardType
+            = KeyboardType.Email
+        ),
+        value = textValue.value,
+        onValueChange = {
+            if (it.length <= maxCharEmail) {
+                textValue.value = it
+            }
+        },
+
+        )
+}
+
+//@Preview
 @Composable
 fun forgotpass() {
     Text(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 40.dp),
+            .padding(horizontal = 0.dp),
         text = "Forgot your password ?",
         style = TextStyle(
 //            color = dvgreentxt,
@@ -185,27 +218,30 @@ fun forgotpass() {
     )
 }
 
-@Preview
+//@Preview
 @Composable
 fun LoginButton() {
     Button(
         onClick = { },
+        colors = ButtonDefaults.buttonColors(
+            backgroundColor = dvgreenbtnbg,
+            contentColor = Color.White),
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 40.dp)
+            .padding(horizontal = 0.dp)
             .clip(shape = RoundedCornerShape(10.dp))
     ) {
         Text(
             text = "Login",
             color = Color.White,
             fontFamily = loginFont,
-            fontSize = 25.sp
+            fontSize = 18.sp
 
         )
     }
 }
 
-@Preview
+//@Preview
 @Composable
 fun SocialAuthFacebook() {
     Column(
@@ -247,7 +283,7 @@ fun SocialAuthFacebook() {
 }
 
 
-@Preview
+//@Preview
 @Composable
 fun SocialAuthGoogle() {
     Column(
@@ -291,7 +327,7 @@ fun SocialAuthGoogle() {
 }
 
 
-@Preview
+//@Preview
 @Composable
 fun NotaMember() {
 
@@ -306,7 +342,7 @@ fun NotaMember() {
             style = TextStyle(
 //            color = dvgreentxt,
                 fontFamily = semiloginFont,
-                fontSize = 25.sp,
+                fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center
             )
@@ -318,7 +354,7 @@ fun NotaMember() {
             style = TextStyle(
                 color = dvgreentxt,
                 fontFamily = semiloginFont,
-                fontSize = 25.sp,
+                fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center
             )
