@@ -9,6 +9,7 @@ val Teal200 = Color(0xFF03DAC5)
 
 //custom divyas color welcome
 val dvgreentxt = Color(0xFF09B44D)
+val dvgreentxtinput = Color(0xFF262626)
 //    btn bg
 val dvgreenbtnbg = Color(0xFF09B44D)
 //    txt inputlayout bg
@@ -20,4 +21,9 @@ val bgcolorlogo = Color(0xFF262626)
 //  bg color below
 val bgcolor = Color(0xFF171A21)
 val bgcolor2 = Color(0xB0171A21)
+
+
+//  outline color below
+val empasscolor = dvgreentxt
+val empasscoloroutline =dvgreenbtnbg
 
