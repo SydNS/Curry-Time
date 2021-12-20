@@ -96,7 +96,7 @@ fun Resetpasswordscreen() {
 
                 MyPasswordTextField()
                 Spacer(modifier = Modifier.padding(0.dp, 5.dp))
-                forgotpass()
+//                forgotpass()
                 Spacer(modifier = Modifier.padding(0.dp, 5.dp))
                 ResetpasswordButton()
                 Spacer(modifier = Modifier.padding(0.dp, 30.dp))
