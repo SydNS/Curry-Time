@@ -24,5 +24,20 @@ val Typography = Typography(
         fontWeight = FontWeight.Normal,
         fontSize = 12.sp
     )
-    */
+//    */
+//    , h1 = TextStyle(
+//        fontWeight = FontWeight.Light,
+//        fontSize = 96.sp,
+//        letterSpacing = (-1.5).sp
+//    ),
+//    h2 = TextStyle(
+//        fontWeight = FontWeight.Light,
+//        fontSize = 60.sp,
+//        letterSpacing = (-0.5).sp
+//    ),
+//    h3 = TextStyle(
+//        fontWeight = FontWeight.Normal,
+//        fontSize = 48.sp,
+//        letterSpacing = 0.sp
+//    )
 )
