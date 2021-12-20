@@ -9,18 +9,25 @@ data class onboarding( val image: Int,
 
 val onBoardItem = listOf(
     onboarding(
-        R.drawable.logo,
-        "Make it Easy One",
-        "Lorem Ipsum is simply dummy text of the printing and typesetting Industry."
+        R.drawable.nav1,
+        "FIND THE FOOD YOU LOVE",
+        "Discover the best healthy, tasty food\n" +
+                "                and fast delivery to your doorsteps"
+
     ),
     onboarding(
-        R.drawable.facebook,
-        "Make it Easy Two",
-        "Lorem Ipsum is simply dummy text of the printing and typesetting Industry."
+        R.drawable.nav2,
+        "FAST DELIVERY",
+        "Fast food delivery to home,office\n" +
+                "                wherever you are"
     ),
     onboarding(
-        R.drawable.logo,
-        "Make it Easy Three",
-        "Lorem Ipsum is simply dummy text of the printing and typesetting Industry."
+        R.drawable.nav3,
+        "LIVE TRACKING",
+        "Real time tracking of your food\n" +
+                "            once you placed the order"
     )
+
+
+
 )
