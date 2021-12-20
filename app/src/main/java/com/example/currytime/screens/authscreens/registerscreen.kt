@@ -2,6 +2,7 @@ package com.example.currytime.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -26,6 +27,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import com.example.currytime.R
 import com.example.currytime.ui.theme.dvgreenbtnbg
 import com.example.currytime.ui.theme.dvgreentxt
@@ -41,9 +44,9 @@ val semiRegisterFont = FontFamily(Font(R.font.poppinssemibold))
 
 var maxCharEmailRegister: Int = 20
 
-@Preview
+//@Preview
 @Composable
-fun Registerscreen() {
+fun Registerscreen(navController: NavHostController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -107,9 +110,9 @@ fun Registerscreen() {
                 Spacer(modifier = Modifier.padding(0.dp, 5.dp))
                 PasswordTextFieldRegister()//password
                 Spacer(modifier = Modifier.padding(0.dp, 20.dp))
-                RegisterButton()
+                RegisterButton(navController)
                 Spacer(modifier = Modifier.padding( top=20.dp))
-                AlreadyaMember()
+                AlreadyaMember(navController)
 
 
             }
@@ -118,7 +121,7 @@ fun Registerscreen() {
 }
 
 //first name field
-@Preview
+//@Preview
 @Composable
 fun FirstNameTextFieldRegister() {
     val textValue = remember { mutableStateOf("") }
@@ -159,7 +162,7 @@ fun FirstNameTextFieldRegister() {
 }
 
 //last name field
-@Preview
+//@Preview
 @Composable
 fun LastNameTextFieldRegister() {
     val textValue = remember { mutableStateOf("") }
@@ -200,7 +203,7 @@ fun LastNameTextFieldRegister() {
 }
 
 //emailfield
-@Preview
+//@Preview
 @Composable
 fun EmailTextFieldRegister() {
     val textValue = remember { mutableStateOf("") }
@@ -242,7 +245,7 @@ fun EmailTextFieldRegister() {
 
 
 //password field
-@Preview
+//@Preview
 @Composable
 fun PasswordTextFieldRegister() {
     val textValue = remember { mutableStateOf("") }
@@ -286,9 +289,11 @@ fun PasswordTextFieldRegister() {
 
 //@Preview
 @Composable
-fun RegisterButton() {
+fun RegisterButton(navController: NavHostController) {
     Button(
-        onClick = { },
+        onClick = {
+                navController.navigate("Login")
+        },
         colors = ButtonDefaults.buttonColors(
             backgroundColor = dvgreenbtnbg,
             contentColor = Color.White),
@@ -395,7 +400,7 @@ fun SocialAuthGoogleRegister() {
 
 //@Preview
 @Composable
-fun AlreadyaMember() {
+fun AlreadyaMember(navController: NavController) {
 
     Row(
         modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center
@@ -415,7 +420,10 @@ fun AlreadyaMember() {
         )
         Text(
             modifier = Modifier
-                .padding(5.dp, 5.dp),
+                .padding(5.dp, 5.dp)
+                .clickable(enabled = true, onClick = {
+                    navController.navigate("Login")
+                }),
             text = "Login",
             style = TextStyle(
                 color = dvgreentxt,
