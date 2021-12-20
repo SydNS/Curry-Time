@@ -27,3 +27,6 @@ val bgcolor2 = Color(0xB0171A21)
 val empasscolor = dvgreentxt
 val empasscoloroutline =dvgreenbtnbg
 
+//  text color onboarding
+val onboardingtxtcolor = Color(0xFF262626)
+
