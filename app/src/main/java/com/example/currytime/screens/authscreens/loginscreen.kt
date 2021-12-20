@@ -2,6 +2,7 @@ package com.example.currytime.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -28,6 +29,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.currytime.R
 import com.example.currytime.ui.theme.dvgreenbtnbg
 import com.example.currytime.ui.theme.dvgreentxt
@@ -44,9 +46,9 @@ val loginFontExtra = FontFamily(Font(R.font.poppinsextraligh))
 
 var maxCharEmail: Int = 20
 
-@Preview
+//@Preview
 @Composable
-fun Loginscreen() {
+fun Loginscreen(navController: NavHostController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -114,7 +116,7 @@ fun Loginscreen() {
                 Spacer(modifier = Modifier.padding(0.dp, 5.dp))
                 SocialAuthGoogle()
                 Spacer(modifier = Modifier.padding(top = 25.dp))
-                NotaMember()
+                NotaMember(navController)
 
 
             }
@@ -329,7 +331,7 @@ fun SocialAuthGoogle() {
 
 //@Preview
 @Composable
-fun NotaMember() {
+fun NotaMember(navController: NavHostController) {
 
     Row(
         modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center
@@ -349,7 +351,10 @@ fun NotaMember() {
         )
         Text(
             modifier = Modifier
-                .padding(5.dp, 5.dp),
+                .padding(5.dp, 5.dp)
+                .clickable(enabled = true, onClick = {
+                    navController.navigate("Register")
+                }),
             text = "Join Now",
             style = TextStyle(
                 color = dvgreentxt,
@@ -357,7 +362,8 @@ fun NotaMember() {
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center
-            )
+            ),
+
         )
 
     }
