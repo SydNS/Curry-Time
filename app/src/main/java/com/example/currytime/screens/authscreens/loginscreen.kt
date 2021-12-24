@@ -29,6 +29,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.example.currytime.R
 import com.example.currytime.ui.theme.dvgreenbtnbg
@@ -110,7 +111,7 @@ fun Loginscreen(navController: NavHostController) {
                 Spacer(modifier = Modifier.padding(0.dp, 5.dp))
                 forgotpass()
                 Spacer(modifier = Modifier.padding(0.dp, 5.dp))
-                LoginButton()
+                LoginButton(navController)
                 Spacer(modifier = Modifier.padding(0.dp, 30.dp))
                 SocialAuthFacebook()
                 Spacer(modifier = Modifier.padding(0.dp, 5.dp))
@@ -222,9 +223,11 @@ fun forgotpass() {
 
 //@Preview
 @Composable
-fun LoginButton() {
+fun LoginButton(navController:NavController) {
     Button(
-        onClick = { },
+        onClick = {
+            navController.navigate("Dashboard")
+        },
         colors = ButtonDefaults.buttonColors(
             backgroundColor = dvgreenbtnbg,
             contentColor = Color.White),
