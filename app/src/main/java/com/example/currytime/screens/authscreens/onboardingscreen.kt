@@ -1,6 +1,8 @@
 package com.example.currytime.screens
 
 
+import android.content.Context
+import android.widget.Toast
 import androidx.annotation.FloatRange
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.Image
@@ -17,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -26,6 +29,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.currytime.R
 import com.example.currytime.data.onBoardItem
 import com.example.currytime.ui.theme.Typography
@@ -110,9 +114,12 @@ fun OnBoardingScreen(
 
         }
 
+        var ctx=LocalContext?.current
+
+
         Box(modifier = Modifier.align(Alignment.BottomCenter)
-            .background(Color.Yellow)) {
-            BottomSection(pagerState.currentPage, navController)
+            .padding(bottom = 20.dp)) {
+            BottomSection(pagerState.currentPage, navController,ctx)
         }
     }
 }
@@ -148,6 +155,8 @@ fun PagerIndicator(size: Int, currentPage: Int) {
     }
 }
 
+
+
 @Composable
 fun Indicator(isSelected: Boolean) {
     val width = animateDpAsState(targetValue = if (isSelected) 25.dp else 10.dp)
@@ -159,16 +168,17 @@ fun Indicator(isSelected: Boolean) {
             .width(width.value)
             .clip(CircleShape)
             .background(
-                if (isSelected) Color.Red else Color.DarkGray.copy(alpha = 0.5f)
+                if (isSelected) Color.Green else Color.DarkGray.copy(alpha = 0.5f)
             )
     )
 }
 
 @Composable
-fun BottomSection(currentPager: Int, navController: NavController) {
+fun BottomSection(currentPager: Int, navController: NavController,context: Context) {
     Row(
         modifier = Modifier
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .padding(bottom=10.dp),
         horizontalArrangement = if (currentPager != 2) Arrangement.SpaceBetween else Arrangement.Center
     ) {
 
@@ -186,7 +196,9 @@ fun BottomSection(currentPager: Int, navController: NavController) {
                 Text(
                     text = "Get Started",
                     modifier = Modifier.padding(vertical = 8.dp, horizontal = 40.dp),
-                    color = Color.White
+                    color = Color.White,
+                    fontSize = 25.sp,
+                    fontWeight = FontWeight.Light
                 )
             }
         } else if (currentPager == 0) {
@@ -197,7 +209,7 @@ fun BottomSection(currentPager: Int, navController: NavController) {
                 Modifier
                     .padding(end = 20.dp)
                     .clickable(enabled = true, onClick = {
-                        currentPager == 1
+                        Toast.makeText(context,"here",Toast.LENGTH_LONG).show()
                     })
             )
         } else {
@@ -211,9 +223,23 @@ fun BottomSection(currentPager: Int, navController: NavController) {
 @Composable
 fun SkipNextButton(text: String, modifier: Modifier) {
     Text(
-        text = text, color = dvgreenbtnbg, modifier = modifier, fontSize = 18.sp,
+        text = text, color = dvgreenbtnbg,
+        modifier = modifier, fontSize = 25.sp,
         style = Typography.body1,
-        fontWeight = FontWeight.Medium
+        fontWeight = FontWeight.Light
     )
+
+}
+
+@Preview
+@Composable
+fun Skipnxtview(){
+//    SkipNextButton("Skip",
+//        Modifier.background(Color.Green)
+//        .size(100.dp,50.dp))
+    val navController = rememberNavController()
+
+//    BottomSection(1, navController.)
+
 
 }
