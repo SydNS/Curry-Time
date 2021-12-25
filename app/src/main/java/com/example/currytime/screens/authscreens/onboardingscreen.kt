@@ -114,33 +114,15 @@ fun OnBoardingScreen(
 
         }
 
-        var ctx=LocalContext?.current
-
-
+        var ctx= LocalContext.current
         Box(modifier = Modifier.align(Alignment.BottomCenter)
             .padding(bottom = 20.dp)) {
-            BottomSection(pagerState.currentPage, navController,ctx)
+            BottomSection(pagerState.currentPage, navController,pagerState)
         }
     }
 }
 
-@ExperimentalPagerApi
-@Composable
-fun rememberPagerState(
-    pageCount: Int,
-    @androidx.annotation.IntRange(from = 0) initialPage: Int = 0,
-    @FloatRange(from = 0.0, to = 1.0) initialPageOffset: Float = 0f,
-    @androidx.annotation.IntRange(from = 1) initialOffscreenLimit: Int = 1,
-    infiniteLoop: Boolean = false
-): PagerState = rememberSaveable(saver = PagerState.Saver) {
-    PagerState(
-        pageCount = pageCount,
-        currentPage = initialPage,
-        currentPageOffset = initialPageOffset,
-        offscreenLimit = initialOffscreenLimit,
-        infiniteLoop = infiniteLoop
-    )
-}
+//this function was never used becoze theres a similar in the sdk
 
 @Composable
 fun PagerIndicator(size: Int, currentPage: Int) {
@@ -168,13 +150,14 @@ fun Indicator(isSelected: Boolean) {
             .width(width.value)
             .clip(CircleShape)
             .background(
-                if (isSelected) Color.Green else Color.DarkGray.copy(alpha = 0.5f)
+                if (isSelected) dvgreenbtnbg else Color.DarkGray.copy(alpha = 0.5f)
             )
     )
 }
 
+@ExperimentalPagerApi
 @Composable
-fun BottomSection(currentPager: Int, navController: NavController,context: Context) {
+fun BottomSection(currentPager: Int, navController: NavController,pagerState:PagerState) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -209,7 +192,7 @@ fun BottomSection(currentPager: Int, navController: NavController,context: Conte
                 Modifier
                     .padding(end = 20.dp)
                     .clickable(enabled = true, onClick = {
-                        Toast.makeText(context,"here",Toast.LENGTH_LONG).show()
+//                        pagerState.targetPage==2
                     })
             )
         } else {
