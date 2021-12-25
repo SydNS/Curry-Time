@@ -292,7 +292,7 @@ fun PasswordTextFieldRegister() {
 fun RegisterButton(navController: NavHostController) {
     Button(
         onClick = {
-                navController.navigate("Login")
+                navController.navigate("Otpscreen")
         },
         colors = ButtonDefaults.buttonColors(
             backgroundColor = dvgreenbtnbg,

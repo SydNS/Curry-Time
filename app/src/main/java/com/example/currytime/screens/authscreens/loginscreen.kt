@@ -109,7 +109,7 @@ fun Loginscreen(navController: NavHostController) {
                 Spacer(modifier = Modifier.padding(0.dp, 5.dp))
                 MyPasswordTextField()
                 Spacer(modifier = Modifier.padding(0.dp, 5.dp))
-                forgotpass()
+                forgotpass(navController )
                 Spacer(modifier = Modifier.padding(0.dp, 5.dp))
                 LoginButton(navController)
                 Spacer(modifier = Modifier.padding(0.dp, 30.dp))
@@ -206,11 +206,14 @@ fun MyPasswordTextField() {
 
 //@Preview
 @Composable
-fun forgotpass() {
+fun forgotpass(navController: NavController) {
     Text(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 0.dp),
+            .padding(horizontal = 0.dp)
+            .clickable(enabled = true, onClick = {
+                navController.navigate("Resetpassword")
+            }),
         text = "Forgot your password ?",
         style = TextStyle(
 //            color = dvgreentxt,

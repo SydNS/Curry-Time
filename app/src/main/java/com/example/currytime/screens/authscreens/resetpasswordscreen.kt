@@ -24,7 +24,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.currytime.R
 import com.example.currytime.screens.boldRegisterFont
 import com.example.currytime.screens.loginFont
@@ -34,10 +36,16 @@ import com.example.currytime.ui.theme.dvgreenbtnbg
 import com.example.currytime.ui.theme.dvgreentxt
 import com.example.currytime.ui.theme.empasscolor
 
-
 @Preview
 @Composable
-fun Resetpasswordscreen() {
+fun Resetpasswordscreenview(){
+    val navController = rememberNavController()
+    Resetpasswordscreen(navController)
+}
+
+//@Preview
+@Composable
+fun Resetpasswordscreen(navController: NavController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -98,7 +106,7 @@ fun Resetpasswordscreen() {
                 Spacer(modifier = Modifier.padding(0.dp, 5.dp))
 //                forgotpass()
                 Spacer(modifier = Modifier.padding(0.dp, 5.dp))
-                ResetpasswordButton()
+                ResetpasswordButton(navController)
                 Spacer(modifier = Modifier.padding(0.dp, 30.dp))
 
 
@@ -165,9 +173,11 @@ fun forgotpass() {
 
 //@Preview
 @Composable
-fun ResetpasswordButton() {
+fun ResetpasswordButton(navController: NavController) {
     Button(
-        onClick = { },
+        onClick = {
+            navController.navigate("Confirmpassword")
+        },
         colors = ButtonDefaults.buttonColors(
             backgroundColor = dvgreenbtnbg,
             contentColor = Color.White),
@@ -185,3 +195,4 @@ fun ResetpasswordButton() {
         )
     }
 }
+

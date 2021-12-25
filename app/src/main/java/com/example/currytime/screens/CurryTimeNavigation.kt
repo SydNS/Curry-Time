@@ -6,6 +6,9 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.currytime.screens.authscreens.Confirmnewpaswordscreen
+import com.example.currytime.screens.authscreens.Otpscreen
+import com.example.currytime.screens.authscreens.Resetpasswordscreen
 import com.example.currytime.screens.dashboardscreens.*
 import com.example.currytime.screens.dashboardscreens.HomeScreen
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -24,6 +27,11 @@ fun Navigation() {
         composable("splash") { Splash(navController) }
         composable("Login") { Loginscreen(navController) }
         composable("Register") { Registerscreen(navController) }
+//        otp
+        composable("Otpscreen") { Otpscreen(navController) }
+//        forgot password
+        composable("Resetpassword") { Resetpasswordscreen(navController) }
+        composable("Confirmpassword") { Confirmnewpaswordscreen(navController) }
 //        dashboard
         composable("Dashboard") { DashboardView(navController) }
 //        dashboar screens
