@@ -10,23 +10,24 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
 import com.example.currytime.R
 import com.example.currytime.ui.theme.dvgreenbtnbg
 
 sealed class NavigationItem(var route: String, var icon: Int, var title: String) {
-    object Home : NavigationItem("home", R.drawable.ic_baseline_home_24, "Home")
-    object Music : NavigationItem("music", R.drawable.ic_baseline_notifications_24, "Music")
-    object Movies : NavigationItem("movies", R.drawable.ic_baseline_favorite_24, "Movies")
-    object Books : NavigationItem("books", R.drawable.ic_baseline_search_24, "Books")
+    object Home : NavigationItem("Home", R.drawable.ic_baseline_home_24, "Home")
+    object Notifications : NavigationItem("Notifications", R.drawable.ic_baseline_notifications_24, "Notifications")
+    object Favorite : NavigationItem("Favorite", R.drawable.ic_baseline_favorite_24, "Favorite")
+    object Profile : NavigationItem("Profile", R.drawable.ic_baseline_person_24, "Profile")
 }
 
 @Composable
 fun BottomNavigationBar(navController: NavController) {
     val items = listOf(
         NavigationItem.Home,
-        NavigationItem.Music,
-        NavigationItem.Movies,
-        NavigationItem.Books,
+        NavigationItem.Notifications,
+        NavigationItem.Favorite,
+        NavigationItem.Profile,
     )
     BottomNavigation(
         backgroundColor = dvgreenbtnbg,
@@ -69,5 +70,6 @@ fun BottomNavigationBar(navController: NavController) {
 @Preview(showBackground = true)
 @Composable
 fun BottomNavigationBarPreview() {
-//    BottomNavigationBar()
+    val navController = rememberNavController()
+    BottomNavigationBar(navController)
 }
