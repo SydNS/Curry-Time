@@ -229,6 +229,7 @@ fun forgotpass(navController: NavController) {
 fun LoginButton(navController:NavController) {
     Button(
         onClick = {
+            navController.popBackStack()
             navController.navigate("Dashboard")
         },
         colors = ButtonDefaults.buttonColors(
