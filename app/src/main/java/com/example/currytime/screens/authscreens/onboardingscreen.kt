@@ -130,6 +130,7 @@ fun PagerIndicator(size: Int, currentPage: Int) {
 
         horizontalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier.padding(top = 30.dp)
+
     ) {
         repeat(size) {
             Indicator(isSelected = it == currentPage)
@@ -168,6 +169,7 @@ fun BottomSection(currentPager: Int, navController: NavController,pagerState:Pag
         if (currentPager == 2) {
             Button(
                 onClick = {
+                    navController.popBackStack()
                     navController.navigate("Login")
                 },
                 elevation = ButtonDefaults.elevation(5.dp),
