@@ -1,5 +1,7 @@
 package com.example.currytime.screens.dashboardscreens
 
+
+import BottomNavigationBar
 import android.content.Context
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.Image
@@ -26,9 +28,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
 import com.example.currytime.ui.theme.Typography
 import com.example.currytime.R
+import com.example.currytime.screens.Bottom_Route_Navigation
 import com.example.currytime.ui.theme.dvgreenbtnbg
 import com.example.currytime.ui.theme.dvgreentxt
 import com.example.currytime.ui.theme.dvgreentxtbg
@@ -101,18 +106,14 @@ fun Chips() {
     Chipsection(chips = chiplist)
 }
 
-@ExperimentalAnimationApi
-@ExperimentalPagerApi
-@ExperimentalMaterialApi
-//@Preview
-@Composable
-fun HomeScreen(navController: NavController) {
-    val context = LocalContext.current
+//val imgcolor = Color(0xFF2B3141)
+val homefont = FontFamily(Font(R.font.poppinsregular))
 
-    // theme for our app.
+
+@Composable
+fun MainScreen() {
+    val navController = rememberNavController()
     Scaffold(
-        // below line we are
-        // creating a top bar.
         topBar = {
             TopAppBar(
                 backgroundColor = dvgreenbtnbg,
@@ -168,105 +169,16 @@ fun HomeScreen(navController: NavController) {
                 modifier = Modifier.size(60.dp)
             ) {
                 Icon(
-                    Icons.Outlined.Person,
+                    Icons.Outlined.Add,
                     contentDescription = "Profile"
                 )
             }
         },
         isFloatingActionButtonDocked = true,
         floatingActionButtonPosition = FabPosition.Center,
-
-
-//        bottomnav
-
-        bottomBar = {
-//    state of the bottomnavigtion
-            val navBackStackEntry by navController.currentBackStackEntryAsState()
-            val currentDestination  = navBackStackEntry?.destination
-            BottomNavigation(
-                backgroundColor = Color.Transparent,
-//                cutoutShape = RoundedCornerShape(50.dp),
-                elevation = 0.dp,
-                content = {
-                    BottomNavigation(
-                        backgroundColor = Color.White,
-                        elevation = 0.dp
-                    ) {
-                        BottomNavigationItem(
-                            selected = currentDestination?.route=="home",
-                            onClick = {    },
-                            icon = {
-                                Icon(
-                                    Icons.Outlined.Home,
-                                    contentDescription = "Profile"
-                                )
-                            },
-                            selectedContentColor = Color.Red,
-                            unselectedContentColor = Color.LightGray
-                        )
-                        BottomNavigationItem(
-                            selected = true,
-                            onClick = {    },
-                            icon = {
-                                Icon(
-                                    Icons.Outlined.Favorite,
-                                    contentDescription = "Favorite"
-                                )
-                            },
-                            selectedContentColor = Color.Red,
-                            unselectedContentColor = Color.LightGray
-                        )
-                        BottomNavigationItem(
-                            selected = currentDestination?.route=="notifications",
-                            onClick = {    },
-                            icon = {
-                                Icon(
-                                    Icons.Outlined.Notifications,
-                                    contentDescription = "Notifications"
-                                )
-                            },
-                            selectedContentColor = Color.Red,
-                            unselectedContentColor = Color.LightGray
-                        )
-                        BottomNavigationItem(
-                            selected = currentDestination?.route=="search",
-                            onClick = { },
-                            icon = {
-                                BadgeBox(backgroundColor = Color.Blue,
-                                badgeContent = {
-                                    Text(
-                                        text = "5",
-                                        color = Color.White,
-                                        fontFamily = homefont
-                                    )
-                                }) {
-                                    Icon(
-                                        Icons.Outlined.ShoppingCart,
-                                        contentDescription = "ShoppingCart"
-                                    )
-
-                                }
-                            },
-                            selectedContentColor = Color.Red,
-                            unselectedContentColor = Color.LightGray
-                        )
-
-
-
-
-
-                    }
-                }
-            )
-        }
+        bottomBar = { BottomNavigationBar(navController) }
     ) {
-        BottomNavBarNavigationHost()
+        Bottom_Route_Navigation(navController)
     }
 }
-
-
-
-
-//val imgcolor = Color(0xFF2B3141)
-val homefont = FontFamily(Font(R.font.poppinsregular))
 
