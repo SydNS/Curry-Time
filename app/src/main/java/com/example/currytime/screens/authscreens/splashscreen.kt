@@ -1,4 +1,4 @@
-package com.example.currytime.screens
+package com.example.currytime.screens.authscreens
 
 import android.view.animation.OvershootInterpolator
 import androidx.compose.animation.core.Animatable
@@ -48,7 +48,8 @@ fun Splash(navController: NavHostController) {
             }
         ))
         delay(1000L)
-        navController.navigate("onboarding")
+        navController.popBackStack()
+        navController.navigate("Auth")
     }
 
     Box(
