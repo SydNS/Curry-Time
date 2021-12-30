@@ -1,9 +1,12 @@
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -18,7 +21,7 @@ sealed class NavigationItem(var route: String, var icon: Int, var title: String)
     object Home : NavigationItem("Home", R.drawable.ic_baseline_home_24, "Home")
     object Notifications : NavigationItem("Notifications", R.drawable.ic_baseline_notifications_24, "Notifications")
     object Favorite : NavigationItem("Favorite", R.drawable.ic_baseline_favorite_24, "Favorite")
-    object Profile : NavigationItem("Profile", R.drawable.ic_baseline_person_24, "Profile")
+    object Profile : NavigationItem("Profile", R.drawable.ic_baseline_shopping_cart_24, "Profile")
 }
 
 @Composable
@@ -30,6 +33,7 @@ fun BottomNavigationBar(navController: NavController) {
         NavigationItem.Profile,
     )
     BottomNavigation(
+//        Modifier.background(dvgreenbtnbg).fillMaxWidth(),
         backgroundColor = dvgreenbtnbg,
         contentColor = Color.White
     ) {
@@ -43,7 +47,7 @@ fun BottomNavigationBar(navController: NavController) {
                 label = { Text(text = item.title) },
                 selectedContentColor = Color.White,
                 unselectedContentColor = Color.White.copy(0.4f),
-                alwaysShowLabel = true,
+                alwaysShowLabel = false,
                 selected = currentRoute == item.route,
                 onClick = {
                     navController.navigate(item.route) {
