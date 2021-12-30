@@ -17,6 +17,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -28,13 +29,20 @@ import androidx.navigation.NavHostController
 import com.example.currytime.ui.theme.bgcolor
 import com.example.currytime.ui.theme.bgcolor2
 import com.example.currytime.ui.theme.dvgreentxt
-import kotlinx.coroutines.delay
 import com.example.currytime.R
+import com.example.currytime.data.DataStoreManager
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.catch
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.flow.collect
 
 
 //@Preview
+@InternalCoroutinesApi
 @Composable
 fun Splash(navController: NavHostController) {
+
+    var dataStoreManager = DataStoreManager(LocalContext.current )
 
     val scale= remember{
         Animatable(0f)
@@ -49,6 +57,22 @@ fun Splash(navController: NavHostController) {
         ))
         delay(1000L)
         navController.popBackStack()
+        GlobalScope.launch(
+            Dispatchers.IO
+        ) {
+            dataStoreManager.getFromDataStore().catch { e ->
+                e.printStackTrace()
+            }.collect(){
+                withContext(Dispatchers.Main) {
+                    if(it=="Old"){
+                        navController.navigate("Login")
+                    }else{
+                        navController.navigate("Auth")
+                    }
+                }
+            }
+
+            }
         navController.navigate("Auth")
     }
 
@@ -72,7 +96,7 @@ fun Splash(navController: NavHostController) {
                     .wrapContentSize()
                     .background(color = Color.Transparent)
                     .align(alignment = Alignment.CenterHorizontally)
-                    .padding(start=30.dp, top =10.dp, end = 30.dp, bottom = 30.dp)
+                    .padding(start = 30.dp, top = 10.dp, end = 30.dp, bottom = 30.dp)
 
             ) {
                 Image(
@@ -104,9 +128,10 @@ fun Splash(navController: NavHostController) {
 //                ){
             Image(painter = painterResource(id = R.drawable.imagesplash),
                 contentDescription ="plate of food",
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier
+                    .fillMaxSize()
 
-                    .padding( top = 5.dp)
+                    .padding(top = 5.dp)
                     .align(alignment = Alignment.CenterHorizontally),
                 contentScale = ContentScale.FillBounds
             )
