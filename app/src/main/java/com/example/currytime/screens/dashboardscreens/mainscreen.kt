@@ -43,7 +43,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 //val imgcolor = Color(0xFF2B3141)
 val homefont = FontFamily(Font(R.font.poppinsregular))
 
-
+@Preview
 @Composable
 fun MainScreen() {
     val navController = rememberNavController()
@@ -52,13 +52,12 @@ fun MainScreen() {
             TopAppBar(
                 backgroundColor = dvgreenbtnbg,
                 contentColor = Color.White,
-                elevation = 12.dp,
+                elevation = 18.dp,
                 title = {
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.Center,
                         modifier = Modifier.fillMaxWidth()
-
                     ) {
                         Icon(
                             Icons.Outlined.LocationOn,
@@ -103,14 +102,21 @@ fun MainScreen() {
                 modifier = Modifier.size(60.dp)
             ) {
                 Icon(
-                    Icons.Outlined.Add,
+                    Icons.Outlined.Search,
+                    tint = Color.White,
                     contentDescription = "Profile"
                 )
             }
         },
         isFloatingActionButtonDocked = true,
         floatingActionButtonPosition = FabPosition.Center,
-        bottomBar = { BottomNavigationBar(navController) }
+        bottomBar = {
+            BottomAppBar(
+                backgroundColor = dvgreenbtnbg,
+                cutoutShape = RoundedCornerShape(50),
+                content = {
+            BottomNavigationBar(navController) })
+        }
     ) {
         Bottom_Route_Navigation(navController)
     }
