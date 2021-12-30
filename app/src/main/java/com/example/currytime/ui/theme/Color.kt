@@ -30,3 +30,9 @@ val empasscoloroutline =dvgreenbtnbg
 //  text color onboarding
 val onboardingtxtcolor = Color(0xFF262626)
 
+val FoodColor = Color(0xFF09B44D)
+val FoodBackgroundColor = Color(0xFFFEECC9)
+val CategoryBackgroundColor = Color(0xFFF7F7F7)
+val ViewAllColor = Color(0xFFFDC55E)
+//orange
+val orange = Color(0xFFFF9800)
