@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.currytime.R
+import com.example.currytime.data.DataStoreManager
 import com.example.currytime.data.onBoardItem
 import com.example.currytime.ui.theme.Typography
 import com.example.currytime.ui.theme.dvgreenbtnbg
@@ -39,10 +40,15 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
 import com.google.accompanist.pager.rememberPagerState
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.util.ArrayList
 
 
 var poppinsonboarding= FontFamily(Font(R.font.poppinsthin, FontWeight.Light))
+
+lateinit var ctx:Context
 
 @ExperimentalPagerApi
 //@Preview
@@ -53,7 +59,7 @@ fun OnBoardingScreen(
 
     val items = onBoardItem
 
-
+    ctx=LocalContext.current
     val pagerState = rememberPagerState(
         pageCount = items.size,
         initialOffscreenLimit = 2,
@@ -114,10 +120,9 @@ fun OnBoardingScreen(
 
         }
 
-        var ctx= LocalContext.current
         Box(modifier = Modifier.align(Alignment.BottomCenter)
             .padding(bottom = 20.dp)) {
-            BottomSection(pagerState.currentPage, navController,pagerState)
+            BottomSection(pagerState.currentPage, navController,pagerState,ctx)
         }
     }
 }
@@ -158,7 +163,7 @@ fun Indicator(isSelected: Boolean) {
 
 @ExperimentalPagerApi
 @Composable
-fun BottomSection(currentPager: Int, navController: NavController,pagerState:PagerState) {
+fun BottomSection(currentPager: Int, navController: NavController,pagerState:PagerState,context: Context) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -166,9 +171,14 @@ fun BottomSection(currentPager: Int, navController: NavController,pagerState:Pag
         horizontalArrangement = if (currentPager != 2) Arrangement.SpaceBetween else Arrangement.Center
     ) {
 
+        var dataStoreManager = DataStoreManager(context )
+
         if (currentPager == 2) {
             Button(
                 onClick = {
+                    GlobalScope.launch(Dispatchers.IO) {
+                        dataStoreManager.saveToDatastore("Old")
+                    }
                     navController.popBackStack()
                     navController.navigate("Login")
                 },
