@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "146625667862",
+    "project_id": "curry-time-97a73",
+    "storage_bucket": "curry-time-97a73.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:146625667862:android:fa9fad9b772e0792586637",
+        "android_client_info": {
+          "package_name": "com.example.currytime"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "146625667862-j9nc6icrr6s6r6ab8gbh88ea1k0rq32u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbDAmpOiCjNRkzJP7w4968sRDRZGol4wk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "146625667862-j9nc6icrr6s6r6ab8gbh88ea1k0rq32u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
