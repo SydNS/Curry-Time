@@ -30,13 +30,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.navigation.NavController
 import com.example.currytime.R
 import com.example.currytime.ui.theme.FoodBackgroundColor
 import com.example.currytime.ui.theme.FoodColor
 
 
 @Composable
-fun RecipesScreen() {
+fun Detailscreen() {
     var value by remember { mutableStateOf(5) }
     val activity = LocalContext.current as Activity
     val poppins_bold = Font(R.font.poppinsbold)
@@ -348,7 +349,7 @@ fun RecipesScreen() {
 @Preview
 @Composable()
 fun detailsview(){
-    RecipesScreen()
+//    Detailscreen()
 }
 
 
