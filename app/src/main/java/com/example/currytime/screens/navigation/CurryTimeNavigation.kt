@@ -2,11 +2,14 @@ package com.example.currytime.screens
 
 
 
+import Detailscreen
 import FavoriteScreen
 import NotificationScreen
+import android.widget.Toast
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -20,8 +23,10 @@ import com.example.currytime.screens.dashboardscreens.*
 import com.example.currytime.screens.dashboardscreens.navscreens.HomeScreen
 import com.example.currytime.screens.dashboardscreens.navscreens.ProfileScreen
 import com.google.accompanist.pager.ExperimentalPagerApi
+import kotlinx.coroutines.InternalCoroutinesApi
 
 
+@InternalCoroutinesApi
 @ExperimentalMaterialApi
 @ExperimentalPagerApi
 @ExperimentalAnimationApi
@@ -47,15 +52,6 @@ fun Navigation() {
 
         composable("Dashboard") { MainScreen() }
 
-//        navigation(startDestination = "home",route = "HomeDashboard"){
-////        composable("Dashboard") { DashboardView(navController) }
-////          dashboard screezns
-//            composable("home") { Home(navController) }
-//            composable("profile") { Profile(navController) }
-//            composable("search") { Search(navController) }
-//            composable("notifications") { Notifications(navController) }
-//        }
-
 
     }
 
@@ -65,10 +61,20 @@ fun Navigation() {
 
 @Composable
 fun Bottom_Route_Navigation(navController: NavHostController) {
-    NavHost(navController, startDestination = NavigationItem.Home.route) {
-        composable(NavigationItem.Home.route) {
-            HomeScreen()
+    val ctx= LocalContext.current
+    NavHost(navController, startDestination = "HomeToDetails") {
+
+
+        navigation(route="HomeToDetails", startDestination =  NavigationItem.Home.route){
+            composable(NavigationItem.Home.route) {
+                HomeScreen(navController) {
+                    Toast.makeText(ctx, it.toString(), Toast.LENGTH_LONG).show()
+                }
+            }
+            composable("Details") { Detailscreen() }
+
         }
+
         composable(NavigationItem.Notifications.route) {
             NotificationScreen()
         }
@@ -77,6 +83,20 @@ fun Bottom_Route_Navigation(navController: NavHostController) {
         }
         composable(NavigationItem.Profile.route) {
             ProfileScreen()
+        }
+
+
+    }
+}
+
+
+@Composable
+fun Detailscreen_Route_Navigation(navController: NavHostController) {
+    var ctx= LocalContext.current
+    NavHost(navController, startDestination = "Details", route = "Details") {
+
+        composable ("Details") {
+//            Detailscreen()
         }
 
     }
