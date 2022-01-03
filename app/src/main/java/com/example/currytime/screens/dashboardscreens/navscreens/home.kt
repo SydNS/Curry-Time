@@ -30,6 +30,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.navigation.NavController
 import com.example.currytime.R
 import com.example.currytime.ui.theme.*
 
@@ -112,7 +113,7 @@ val poppinsBold = Font(R.font.poppinsbold)
 val poppinsLight = Font(R.font.poppinsregular)
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navController: NavController,selectedItem:(Int)->Unit) {
 
     val scrollState = rememberScrollState()
     LazyColumn(
@@ -409,9 +410,10 @@ fun HomeScreen() {
             )
             Spacer(modifier = Modifier.height(10.dp))
         }
-        items(10) { index ->
-            VerticallistItem(index)
-            Spacer(modifier = Modifier.width(10.dp))
+        items(20) { index ->
+                VerticallistItem(index,selectedItem,navController)
+                Spacer(modifier = Modifier.width(10.dp))
+
         }
         item {
             Spacer(modifier = Modifier.height(60.dp))
@@ -422,18 +424,22 @@ fun HomeScreen() {
 @Preview(showBackground = true)
 @Composable
 fun HomeScreenPreview() {
-    HomeScreen()
+//    HomeScreen()
 }
 
 //@Preview(showBackground = true)
 @Composable
-fun VerticallistItem(index:Int) {
+fun VerticallistItem(index:Int,selectedItem:(Int)->Unit,navController: NavController) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .height(150.dp)
-            .padding(5.dp),
-        elevation = 10.dp,
+            .padding(5.dp)
+            .clickable {
+                selectedItem(index+1)
+                navController.navigate("Details")
+            },
+        elevation = 5.dp,
         shape = RoundedCornerShape(10.dp)
     ) {
         Row(modifier = Modifier.wrapContentHeight()) {
@@ -453,7 +459,8 @@ fun VerticallistItem(index:Int) {
                     contentDescription = "Category Image",
                     contentScale = ContentScale.Fit,
                     modifier = Modifier
-                        .size(150.dp).clip(shape = RoundedCornerShape(50.dp))
+                        .size(150.dp)
+                        .clip(shape = RoundedCornerShape(50.dp))
                 )
                 Spacer(modifier = Modifier.width(10.dp))
 
@@ -514,9 +521,9 @@ fun VerticallistItem(index:Int) {
                     factory = { context ->
                         TextView(context).apply {
                             text = if (index % 2 == 0) {
-                                Html.fromHtml("<string><b><span style = \"color:#F54748\"><big>$ </big></span><span style = \"color:#000000\"><big><big>14.10</big></big></span></b></string>")
+                                Html.fromHtml("<string><b><span style = \"color:#F54748\"><big>$ </big></span><span style = \"color:#000000\"><big><big>$index</big></big></span></b></string>")
                             } else {
-                                Html.fromHtml("<string><b><span style = \"color:#F54748\"><big>$ </big></span><span style = \"color:#000000\"><big><big>8.35</big></big></span></b></string>")
+                                Html.fromHtml("<string><b><span style = \"color:#F54748\"><big>$ </big></span><span style = \"color:#000000\"><big><big>$index</big></big></span></b></string>")
                             }
                         }
                     }
@@ -554,5 +561,5 @@ fun VerticallistItem(index:Int) {
 @Preview
 @Composable
 fun VerticallistItemVIEW(){
-    VerticallistItem(2)
+//    VerticallistItem(2)
 }
