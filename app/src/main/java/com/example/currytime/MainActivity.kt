@@ -43,9 +43,11 @@ import com.example.currytime.ui.theme.bgcolor
 import com.example.currytime.ui.theme.bgcolor2
 import com.example.currytime.ui.theme.dvgreentxt
 import com.google.accompanist.pager.ExperimentalPagerApi
+import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.delay
 
 class MainActivity : ComponentActivity() {
+    @InternalCoroutinesApi
     @ExperimentalMaterialApi
     @ExperimentalAnimationApi
     @ExperimentalPagerApi
