@@ -49,50 +49,51 @@ fun MainScreen() {
     val navController = rememberNavController()
     Scaffold(
         topBar = {
-            TopAppBar(
-                backgroundColor = dvgreenbtnbg,
-                contentColor = Color.White,
-                elevation = 18.dp,
-                title = {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.Center,
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        Icon(
-                            Icons.Outlined.LocationOn,
-                            contentDescription = "Location",
-                            tint = dvgreenbtnbg,
-                            modifier = Modifier.size(20.dp)
-                        )
-                        Spacer(modifier = Modifier.width(5.dp))
-                        Text(
-                            text = "Pick Location",
-                            fontFamily = homefont,
-                            fontSize = 16.sp
-                        )
+//            if (Bottom_Route_Navigation(navController).equals("Home")){
+                TopAppBar(
+                    backgroundColor = dvgreenbtnbg,
+                    contentColor = Color.White,
+                    elevation = 18.dp,
+                    title = {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.Center,
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            Icon(
+                                Icons.Outlined.LocationOn,
+                                contentDescription = "Location",
+                                tint = dvgreenbtnbg,
+                                modifier = Modifier.size(20.dp)
+                            )
+                            Spacer(modifier = Modifier.width(5.dp))
+                            Text(
+                                text = "Pick Location",
+                                fontFamily = homefont,
+                                fontSize = 16.sp
+                            )
 
-                    }
-                },
-                actions = {
-                    IconButton(onClick = { /*TODO*/ }) {
-                        Icon(
-                            Icons.Outlined.Person,
-                            contentDescription = "Profile"
+                        }
+                    },
+                    actions = {
+                        IconButton(onClick = { /*TODO*/ }) {
+                            Icon(
+                                Icons.Outlined.Person,
+                                contentDescription = "Profile"
+                            )
+                        }
+                    },
+                    navigationIcon = {
+                        Image(
+                            painter = painterResource(id = R.drawable.google),
+                            contentDescription = "Floating Button",
+                            contentScale = ContentScale.Fit,
+                            modifier = Modifier.size(25.dp)
+
                         )
-                    }
-                },
-                navigationIcon = {
-                    Image(
-                        painter = painterResource(id = R.drawable.google),
-                        contentDescription = "Floating Button",
-                        contentScale = ContentScale.Fit,
-                        modifier = Modifier.size(25.dp)
-
-                    )
-                },
-
+                    },
                 )
+//            }
         },
         floatingActionButton = {
             FloatingActionButton(

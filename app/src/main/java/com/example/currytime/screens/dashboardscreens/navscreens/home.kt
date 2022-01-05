@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.currytime.R
 import com.example.currytime.ui.theme.*
 
@@ -113,8 +114,9 @@ val poppinsBold = Font(R.font.poppinsbold)
 val poppinsLight = Font(R.font.poppinsregular)
 
 @Composable
-fun HomeScreen(navController: NavController,selectedItem:(Int)->Unit) {
+fun HomeScreen(navController:NavController,selectedItem:(Int)->Unit) {
 
+//    val navController = rememberNavController()
     val scrollState = rememberScrollState()
     LazyColumn(
         modifier = Modifier
