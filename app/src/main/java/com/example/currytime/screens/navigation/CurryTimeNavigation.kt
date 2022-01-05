@@ -62,18 +62,18 @@ fun Navigation() {
 @Composable
 fun Bottom_Route_Navigation(navController: NavHostController) {
     val ctx= LocalContext.current
-    NavHost(navController, startDestination = "HomeToDetails") {
+    NavHost(navController, startDestination = NavigationItem.Home.route) {
 
-
-        navigation(route="HomeToDetails", startDestination =  NavigationItem.Home.route){
-            composable(NavigationItem.Home.route) {
-                HomeScreen(navController) {
-                    Toast.makeText(ctx, it.toString(), Toast.LENGTH_LONG).show()
-                }
+        composable(NavigationItem.Home.route) {
+            HomeScreen(navController) {
+                Toast.makeText(ctx, it.toString(), Toast.LENGTH_LONG).show()
             }
-            composable("Details") { Detailscreen() }
-
         }
+        composable("Details") { Detailscreen() }
+//        navigation(route="HomeToDetails", startDestination =  NavigationItem.Home.route){
+//
+//
+//        }
 
         composable(NavigationItem.Notifications.route) {
             NotificationScreen()
